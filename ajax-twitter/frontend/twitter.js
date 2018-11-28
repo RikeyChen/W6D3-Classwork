@@ -5,6 +5,8 @@ $(() => {
   // console.log($rootEl);
   // console.log($rootEl.attr('data-user-id'));
   // console.log($rootEl.attr('data-initial-follow-state'));
-  const followToggle = new FollowToggle($rootEl);
+  $rootEl.each((idx, el) => {
+    new FollowToggle($(el));
+  });
   
 });
