@@ -1,4 +1,6 @@
-const FollowToggle = require('/Users/appacademy/Desktop/W6D3/ajax-twitter/frontend/follow_toggle.js');
+const APIUtil = require('./api_util.js');
+const FollowToggle = require('./follow_toggle.js');
+
 
 $(() => {
   const $rootEl = $('.follow-toggle');
