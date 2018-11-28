@@ -1,0 +1,58 @@
+
+.icon-comment {
+  background-position: 0px 0px;
+  
+}
+
+.icon-reblog {
+  background-position: 0px -100px;
+}
+
+.icon-favorite {
+  background-position: 0px -50px;
+}
+
+[class*="icon-"] {
+  background-image: url('/Users/appacademy/Desktop/W6D3/css-friends-11/skeleton/images/sprite.png');
+  background-size: 25px;
+  display: inline-block;
+  width: 25px;
+  height: 0px;
+  overflow: hidden;
+  padding-top: 25px;
+}
+
+.icon-comment:hover {
+  background-position: 0px -25px;
+}
+
+.icon-reblog:hover {
+  background-position: 0px -125px;
+}
+
+.icon-favorite:hover {
+  background-position: 0px -75px;
+}
+
+[class*="icon-small-"] {
+  background-image: url('/Users/appacademy/Desktop/W6D3/css-friends-11/skeleton/images/sprite.png');
+  
+  background-size: 20px;
+  overflow: hidden;
+  padding-top: 30px;
+  width: 25px;
+  
+}
+
+.icon-small-friends {
+  background-position: 0px -150px;
+}
+.icon-small-about {
+  background-position: 0px -175px;
+}
+.icon-small-photos {
+  background-position: 0px -200px;
+}
+.icon-small-wall {
+  background-position: 0px -225px;
+}
