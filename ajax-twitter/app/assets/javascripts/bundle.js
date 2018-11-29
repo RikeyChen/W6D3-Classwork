@@ -109,7 +109,17 @@ const APIUtil = {
       method: 'DELETE',
       dataType: 'JSON'
     })
-  )
+  ),
+  
+  searchUsers: (queryVal, success) => {
+    return $.ajax({
+      url: `/users/search`,
+      dataType: 'JSON',
+      data: {
+        query: queryVal
+      }
+    });
+  }
 };
 
 module.exports = APIUtil;
@@ -189,18 +199,63 @@ module.exports = FollowToggle;
 
 const APIUtil = __webpack_require__(/*! ./api_util.js */ "./frontend/api_util.js");
 const FollowToggle = __webpack_require__(/*! ./follow_toggle.js */ "./frontend/follow_toggle.js");
+const UsersSearch = __webpack_require__(/*! ./users_search.js */ "./frontend/users_search.js");
 
 
 $(() => {
   const $rootEl = $('.follow-toggle');
-  // console.log($rootEl);
-  // console.log($rootEl.attr('data-user-id'));
-  // console.log($rootEl.attr('data-initial-follow-state'));
+  const $users = $('.users-search');
   $rootEl.each((idx, el) => {
     new FollowToggle($(el));
   });
   
+  $users.each((idx, user) => {
+    new UsersSearch($(user));
+  });
+  
 });
+
+/***/ }),
+
+/***/ "./frontend/users_search.js":
+/*!**********************************!*\
+  !*** ./frontend/users_search.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const APIUtil = __webpack_require__(/*! ./api_util.js */ "./frontend/api_util.js");
+class UsersSearch {
+  constructor($nav) {
+    this.$nav = $nav;
+    this.$input = $('.search-field');
+    console.log($('.search-field'));
+    this.$ul = $('.users');
+    console.log($('.users'));
+    // debugger;
+    this.handleInput();
+  }
+  
+  handleInput() {
+    this.$input.on('keyup', e => {
+      e.preventDefault();
+      // debugger;
+      APIUtil.searchUsers(this.$input.val())
+      .then((res) => this.renderResults(res));
+    });
+  }
+  
+  renderResults (res) {
+    this.$ul.empty();
+    debugger;
+    res.forEach((user) => {
+      let $li = $(`<li><a href="/users/${user.id}">${user.username}</a></li>`);
+      this.$ul.append($li);
+    });
+  }
+}
+
+module.exports = UsersSearch;
 
 /***/ })
 
