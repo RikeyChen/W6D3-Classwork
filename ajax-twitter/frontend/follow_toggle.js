@@ -15,19 +15,30 @@ class FollowToggle {
     console.log('this is working');
     if (this.followState === 'followed') {
       this.$el.text('Unfollow!');
-    } else {
+      this.$el.removeAttr('disabled');
+    } else if (this.followState === 'unfollowed') {
       this.$el.text('Follow!');
+      this.$el.removeAttr('disabled');
+    } else {
+      this.$el.attr("disabled", "true");
     }
   }
   
   handleClick() {
     this.$el.on('click', e => {
       e.preventDefault();
-      if (this.followState === 'unfollowed') { APIUtil.followUser(this.userId).then(() => {
+      if (this.followState === 'unfollowed') { 
+        this.followState = 'following';
+        this.render();
+        APIUtil.followUser(this.userId).then(() => {
           this.followState = 'followed';
           this.render();
         });
+
+        
       } else {
+        this.followState = 'unfollowing';
+        this.render();
         APIUtil.unfollowUser(this.userId).then(() => {
           this.followState = 'unfollowed';
           this.render();

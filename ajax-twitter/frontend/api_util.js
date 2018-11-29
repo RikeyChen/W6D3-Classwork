@@ -1,5 +1,6 @@
 const APIUtil = {
   followUser: id => {
+    
     return $.ajax({
       url: `/users/${id}/follow`,
       method: 'POST',
